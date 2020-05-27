@@ -1,0 +1,27 @@
+<form class="search-form">
+    <mat-form-field class="example-full-width">
+        <mat-icon matSuffix>search</mat-icon>
+        <input type="search" matInput placeholder="Search segments and models" #searchSegment>
+    </mat-form-field>
+</form>
+
+
+
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+
+    <mat-tree-node style="cursor: pointer !important;" class="cursor-pointer" (click)="showSegment(node)" class="cursor-pointer" *matTreeNodeDef="let node" matTreeNodePadding>
+        <button class="cursor-pointer" mat-icon-button disabled></button>
+        {{node.item}}
+        <mat-divider></mat-divider>
+    </mat-tree-node>
+    <mat-tree-node class="cursor-pointer" *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+        <button class="cursor-pointer" mat-icon-button [attr.aria-label]="'toggle ' + node.filename" matTreeNodeToggle>
+            <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+        </button>
+        {{node.item}}
+        <mat-progress-bar *ngIf="node.isLoading" mode="indeterminate" class="example-tree-progress-bar">
+        </mat-progress-bar>
+    </mat-tree-node>
+</mat-tree>

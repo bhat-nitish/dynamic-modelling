@@ -1,0 +1,56 @@
+.main_content {
+    width: 100%;
+    height: 100%;
+}
+
+.mainPage {
+    height: 100%;
+    overflow: hidden !important;
+}
+
+.mainPage {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    display: block;
+}
+
+.mainNav {
+    height: 100% !important;
+    overflow-x: hidden !important;
+}
+
+.segmentList {
+    height: 100%;
+    display: inline-block;
+    width: 20% !important;
+    border: 1px solid red;
+}
+
+.modelList {
+    height: 100%;
+    display: inline-block;
+    border: 1px solid red;
+    width: 60% !important;
+}
+
+.maincontainer {
+    width: 100%;
+    height: 100%;
+}
+
+.leftcolumn {
+    float: left !important;
+    display: inline-block;
+    width: 25%;
+    height: 100%;
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.contentwrapper {
+    border-left: 5px solid rgba(0, 0, 0, 0.5) !important;
+    float: left !important;
+    display: inline-block;
+    width: 70%;
+    height: 100%;
+}

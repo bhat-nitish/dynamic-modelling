@@ -1,0 +1,10 @@
+create table segments(id int auto_increment,
+                segment_name varchar(512) not null,
+                segment_description varchar(1000) not null ,
+				is_active boolean not null,
+				model_type varchar(100) not null,
+                created_by varchar(500) not null,
+                created_on datetime not null,
+                last_updated_on datetime not null,
+                last_updated_by varchar(512) not null,
+                primary key(id));

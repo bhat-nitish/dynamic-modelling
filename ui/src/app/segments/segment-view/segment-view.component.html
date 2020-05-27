@@ -1,0 +1,48 @@
+<div class="modelParent no-overflow">
+
+    <mat-form-field class="segmentNameInput">
+        <mat-label>Segment Name</mat-label>
+        <input disabled required matInput placeholder="Please enter a segment name" [(ngModel)]="segmentName">
+    </mat-form-field>
+
+    <mat-form-field class="segmentNameInput">
+        <mat-label>Segment Description</mat-label>
+        <input disabled matInput placeholder="Please enter a segment description" [(ngModel)]="segmentDescription">
+    </mat-form-field>
+
+    <mat-button-toggle-group [(ngModel)]="modelGroup" name="modelGroupToggle" class="modelButtonGroup">
+        <mat-button-toggle disabled value={{oneGroup}} class="modelButton">1 Step</mat-button-toggle>
+        <mat-button-toggle disabled value={{nGroup}} class="modelButton">N-step</mat-button-toggle>
+        <mat-button-toggle disabled value={{ensembleGroup}} class="modelButton">Ensemble</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <mat-form-field *ngIf="isNStep()" class="segmentNameInput">
+        <mat-label>Parent Model Name</mat-label>
+        <input disabled matInput placeholder="Please enter a parent model name" [(ngModel)]="parentModelName">
+    </mat-form-field>
+
+    <!-- <mat-input placeholder="Please enter a segment name" [(ngModel)]="segmentName" required></mat-input> -->
+    <form *ngIf="form && modelGroup && steps?.length>0" [formGroup]="form">
+        <mat-vertical-stepper linear labelPosition="bottom" #stepper>
+            <ng-template matStepperIcon="edit">
+                <mat-icon>check</mat-icon>
+            </ng-template>
+            <mat-step *ngFor="let step of steps; let index = index; let last = last;">
+                <ng-template matStepLabel>{{step.model.modelName || 'Model '+ (index + 1)}}
+                </ng-template>
+
+                <!-- <ng-template matStepLabel>{{ step.label }}</ng-template> -->
+                <formly-form [form]="form.at(index)" [model]="step.model" [fields]="step.fields"
+                    [options]="options[index]">
+                </formly-form>
+
+                <div class="stepperButtonWrapper">
+                    <button mat-button *ngIf="index !== 0" matStepperPrevious type="button"
+                        (click)="prevStep(index)">Back</button>
+                    <button mat-button *ngIf="!last" matStepperNext type="button"
+                        (click)="nextStep(index)">Next</button>
+                </div>
+            </mat-step>
+        </mat-vertical-stepper>
+    </form>
+</div>
